@@ -18,7 +18,6 @@ def get_task(user_name):
 @app.route('/api/tasks/CombinedSearch/', methods=['GET'])
 def combinedSearch():
     bar = request.args.to_dict()
-    print(bar)
     username = []
     for index in range(len(bar)):
         username.append(bar[str(index+1)])
