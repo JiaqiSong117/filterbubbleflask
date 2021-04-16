@@ -34,16 +34,12 @@ def tasks(username):
     for i in searched_tweets:
         tweets.append(i.text)
 
-
-
-
-
     new_docs=tweets
 
     #LOAD MODEL
-    loaded_vec = CountVectorizer(vocabulary=pickle.load(open("count_vector2.pkl", "rb")))
-    loaded_tfidf = pickle.load(open("tfidf2.pkl","rb"))
-    loaded_model = pickle.load(open("softmax.pkl","rb"))
+    loaded_vec = CountVectorizer(vocabulary=pickle.load(open("count_vector.pkl", "rb")))
+    loaded_tfidf = pickle.load(open("tfidf.pkl","rb"))
+    loaded_model = pickle.load(open("New_softmax.pkl","rb"))
 
     news_category=[]
 
