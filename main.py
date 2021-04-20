@@ -39,7 +39,7 @@ def tasks(username):
     #LOAD MODEL
     loaded_vec = CountVectorizer(vocabulary=pickle.load(open("count_vector.pkl", "rb")))
     loaded_tfidf = pickle.load(open("tfidf.pkl","rb"))
-    loaded_model = pickle.load(open("New_softmax.pkl","rb"))
+    loaded_model = pickle.load(open("v9_softmax.pkl","rb"))
 
     news_category=[]
 

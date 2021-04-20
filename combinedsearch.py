@@ -20,6 +20,7 @@ def combinedsearch(users):
     retweet = []
     likes = []
     # input from website
+
     user_input = 'DA'
     userx = users
 
@@ -34,7 +35,7 @@ def combinedsearch(users):
     # LOAD MODEL
     loaded_vec = CountVectorizer(vocabulary=pickle.load(open("count_vector.pkl", "rb")))
     loaded_tfidf = pickle.load(open("tfidf.pkl", "rb"))
-    loaded_model = pickle.load(open("NEW_softmax.pkl", "rb"))
+    loaded_model = pickle.load(open("v9_softmax.pkl", "rb"))
 
     news_category = []
 
@@ -43,6 +44,7 @@ def combinedsearch(users):
             X_new_counts = loaded_vec.transform([data[i][j]])
             X_new_tfidf = loaded_tfidf.transform(X_new_counts)
             predicted = loaded_model.predict(X_new_tfidf)
+            # print(predicted)
             news_category.append(predicted)
 
     from itertools import islice
@@ -76,6 +78,7 @@ def combinedsearch(users):
     data = {}
     df = pd.DataFrame()
     df['category'] = set_x
+    # print(set_x)
 
     if user_input == 'CA':
         data = dict(zip(set_x, cumulative_count))
@@ -85,7 +88,8 @@ def combinedsearch(users):
             df[users[i]] = count_y[i]
         json_data = df.to_json(orient='records')
 
-    return json_data
+        return json_data
+
 
 
 
