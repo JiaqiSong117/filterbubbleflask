@@ -1,4 +1,5 @@
 import tweepy
+import nltk
 from tweepy import OAuthHandler
 import pandas as pd
 def hash(hashtag):
@@ -12,26 +13,33 @@ def hash(hashtag):
         auth=OAuthHandler(CONSUMER_KEY,CONSUMER_SECRET)
         auth.set_access_token(ACCESS_TOKEN,ACCESS_TOKEN_SECRET)
         api=tweepy.API(auth)
-
         ut= hashtag
-
         popular_tweets = api.search(q=ut, result_type='popular')
-
-        # popular_tweets[1]
+        # tweets=[]
 
         l1=[]
         l2=[]
         l3=[]
         l5=[]
         l4=[]
-        for j in range(5):
-                l4.append(popular_tweets[j].user.profile_image_url)
-                l3.append(popular_tweets[j].text)
-                l1.append(popular_tweets[j].user.screen_name)
-                l2.append(popular_tweets[j].retweet_count)
-                l5.append(popular_tweets[j].user.name)
+        nltk.download('words')
+        words=set(nltk.corpus.words.words())
+        for i in range(len(popular_tweets)):
+                if popular_tweets[i].metadata['iso_language_code']=='en':
+                        l4.append(popular_tweets[i].user.profile_image_url)
+                        l3.append(popular_tweets[i].text)
+                        l1.append(popular_tweets[i].user.screen_name)
+                        l2.append(popular_tweets[i].retweet_count)
+                        l5.append(popular_tweets[i].user.name)
+        if len(l1)>5:
+                l1 = l1[:5]
+                l2 = l2[:5]
+                l3 = l3[:5]
+                l4 = l4[:5]
+                l5 = l5[:5]
 
-        #      l=[cat("\n"+popular_tweets[j].text,"\nBy--  "+popular_tweets[j].user.name,'RetweetCount:'+popular_tweets[j].ret]
+
+
         data=pd.DataFrame()
 
         data['Twitter_ID']=l1

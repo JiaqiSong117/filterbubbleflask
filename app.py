@@ -1,6 +1,5 @@
 from flask import Flask, jsonify
 from flask import request
-import json
 import main as m
 import combinedsearch as c
 import Data_pipeline_v8 as d

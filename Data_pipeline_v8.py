@@ -4,15 +4,10 @@
 # !pip install geocoder
 import tweepy
 
-from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
-from tweepy import Stream
 import pickle
 from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.feature_extraction.text import TfidfTransformer
 
-import matplotlib.pyplot as plt
-import pandas as pd
 
 def trending():
     # Secret Credentials
