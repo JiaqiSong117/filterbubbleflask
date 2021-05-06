@@ -3,6 +3,8 @@ from flask import request
 import json
 import main as m
 import combinedsearch as c
+import Data_pipeline_v8 as d
+import searchash as s
 
 app = Flask(__name__)
 
@@ -22,6 +24,14 @@ def combinedSearch():
     for index in range(len(bar)):
         username.append(bar[str(index+1)])
     return jsonify(c.combinedsearch(username))
+
+@app.route('/api/tasks/trending/', methods=['GET'])
+def trending():
+    return d.trending()
+
+@app.route('/api/tasks/hashtag/<string:hashtag>', methods=['GET'])
+def get_hashtag(hashtag):
+    return s.hash(hashtag)
 
 if __name__ == '__main__':
     app.run()
