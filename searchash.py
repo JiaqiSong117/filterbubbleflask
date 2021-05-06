@@ -25,6 +25,7 @@ def hash(hashtag):
         nltk.download('words')
         words=set(nltk.corpus.words.words())
         for i in range(len(popular_tweets)):
+                popular_tweets[i].text=popular_tweets[i].text.rstrip('\n')
                 if popular_tweets[i].metadata['iso_language_code']=='en':
                         l4.append(popular_tweets[i].user.profile_image_url)
                         l3.append(popular_tweets[i].text)
@@ -47,7 +48,7 @@ def hash(hashtag):
         data['Twitter_Photo']=l4
         data['Retweet_Count']=l2
         data['Twitter_name']=l5
-        d2 = data.to_json(orient='records',lines=True)
+        d2 = data.to_json(orient='records')
         print(d2)
         return d2
 
